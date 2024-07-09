@@ -1,0 +1,15 @@
+helm -n kafka install kafka bitnami/kafka \
+           --set broker.replicaCount=3 \
+		       --version 26.4.2 \
+           --set zookeeper.enabled=true \
+           --set zookeeper.replicaCount=3 \
+           --set zookeeper.persistence.size=8Gi \
+           --set persistence.size=8Gi \
+           --set logPersistence.enabled=true \
+           --set logPersistence.size=8Gi \
+           --set logPersistence.mountPath=/opt/bitnami/kafka/logs \
+           --set replicaCount=3 \
+           --set kraft.enabled=false \
+           --set externalZookeeper.servers=kafka-zookeeper.kafka.svc.cluster.local \
+           --set listeners.client.protocol=PLAINTEXT \
+           --set controller.replicaCount=0
